@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="20dp"
+        >
+
+        <TextView
+            android:id="@+id/face_detection_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            app:layout_constraintVertical_bias="0.01"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="Image Batch Check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            />
+
+        <ImageView
+            android:id="@+id/gallery_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_select_images"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:visibility="gone"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/face_detection_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grid_recycler_view"
+            android:layout_width="0dp"
+            android:visibility="visible"
+            android:layout_height="300dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            app:layout_constraintTop_toBottomOf="@id/face_detection_title"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/view_finder"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="320dp"
+            android:layout_height="480dp" />
+
+
+        <LinearLayout
+            android:id="@+id/control_box"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/grid_recycler_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/start_camera_button"
+                android:layout_marginHorizontal="10dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Camera"
+                />
+
+            <Button
+                android:id="@+id/select_image"
+                android:visibility="visible"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Images"
+                />
+
+            <Button
+                android:id="@+id/capture_image_button"
+                android:layout_marginHorizontal="10dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Capture"
+                />
+
+
+            <Button
+                android:id="@+id/recapture_image_button"
+                android:layout_marginHorizontal="10dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Re-Capture"
+                />
+
+
+
+
+
+
+            <!--            <ToggleButton-->
+            <!--                android:id="@+id/facing_switch"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:gravity="center"-->
+            <!--                android:padding="15dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:checked="true"-->
+            <!--                android:textOff="Switch Camera"-->
+            <!--                android:textOn="Switch Camera"/>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/check_boxes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/control_box"
+            app:layout_constraintBottom_toTopOf="@id/score_box"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/image_batch_check_button"
+                android:textSize="10sp"
+                android:enabled="false"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Image Batch Check"
+                />
+            <!--            <Button-->
+            <!--                android:id="@+id/quality_check_button"-->
+            <!--                android:textSize="10sp"-->
+            <!--                android:enabled="false"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="Quality check"-->
+            <!--                />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/face_detection_button"-->
+            <!--                android:textSize="10sp"-->
+            <!--                android:enabled="false"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="Detect Faces"-->
+            <!--                />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/face_recognition_button"-->
+            <!--                android:textSize="10sp"-->
+            <!--                android:enabled="false"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="Face Recognition"-->
+            <!--                />-->
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/score_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/check_boxes"
+            app:layout_constraintBottom_toTopOf="@id/captured_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            >
+
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/score_text_view"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:gravity="center"-->
+            <!--                android:textSize="12sp"-->
+            <!--                android:fontFamily="@font/lato_bold"-->
+            <!--                android:textColor="@color/brownish_grey" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/number_of_faces_text"-->
+            <!--                android:gravity="center"-->
+            <!--                android:textColor="@color/brownish_grey"-->
+            <!--                android:fontFamily="@font/lato_bold"-->
+            <!--                android:textSize="12sp"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"/>-->
+            <TextView
+                android:id="@+id/image_quality_text"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Image Quality Check - Not Done Yet"
+                />
+            <TextView
+                android:id="@+id/face_detection_text"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Face Detection Check - Not Done Yet"
+                />
+            <TextView
+                android:id="@+id/face_recognition_text"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Face Recognition Check - Not Done Yet"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/captured_image"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:background="@drawable/empty_image_background"
+            app:layout_constraintTop_toBottomOf="@id/score_box"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
